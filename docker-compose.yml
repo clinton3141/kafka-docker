@@ -30,7 +30,17 @@ services:
       - zookeeper
     networks:
       - test-network
-
+  kowl:
+    image: quay.io/cloudhut/kowl:master
+    environment:
+      - KAFKA_BROKERS=kafka:9092
+    ports:
+      - "8080:8080"
+    depends_on:
+      - zookeeper
+      - kafka
+    networks:
+      - test-network
 
 volumes:
   zookeeper_data:
